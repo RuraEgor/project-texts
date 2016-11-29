@@ -7,11 +7,12 @@ $_POST['vodca'] = (isset($_POST['vodca']))?$_POST['vodca']:'&&&';
 if($_POST['vodca'] != '&&&') {
 
 $mes = array();
-$per = mysql_query(" SELECT `name` FROM `group_wr` ORDER BY `number` ASC ");
+$per = mysql_query(" SELECT `name`,`view` FROM `group_wr` ORDER BY `number` ASC ");
 
 while ($row = mysql_fetch_assoc($per)) 
 {
-	$mes[] = $row['name'];	
+	$mes['name'][] = $row['name'];
+	$mes['view'][] = $row['view'];
 }
 
 /*   загатовка для вывода 
@@ -180,7 +181,7 @@ if($UPD_GR_F != '&&&&') {
 
 	if($povt_cat) {
 		//--  обновление элемента
-		$apdate = mysql_query(" UPDATE `group_wr` SET `name` = '".$UPD_GR_F[1]."', `background` = '".$UPD_GR_F[2]."',  `context` = '".$UPD_GR_F[3]."'  WHERE id = '".$UPD_GR_F[0]."' ");
+		$apdate = mysql_query(" UPDATE `group_wr` SET `name` = '".$UPD_GR_F[1]."', `background` = '".$UPD_GR_F[2]."',  `context` = '".$UPD_GR_F[3]."',  `view` = '".$UPD_GR_F[4]."' WHERE id = '".$UPD_GR_F[0]."' ");
 
 	//-----
 

@@ -21,3 +21,4 @@ DirectoryIndex l.html
     # Включаем кэширование xml файлов на десять минут
     ExpiresByType application/xhtml+xml "access plus 600 seconds"
 </ifModule>
+

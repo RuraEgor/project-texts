@@ -59,7 +59,7 @@ $("#addLast").toggle(
 					if(data[i]['choise'] == 1) {data[i]['icon'] = data[i]['screen'];}
 					
 					$("#lastTventy ul.bom").append(
-					"<li id_number = '" + data[i]['id'] + "'>\
+					"<li id_number = '" + data[i]['id'] + "' title = '" + data[i]['data'] + "' data-sec = '" + data[i]['timeCreat'] + "'>\
 						<div class='item' title='" + data[i]['title'] + "' style ='background: " + data[i]['background'] + "' ><a href='" + data[i]['links'] + "' rel='" + data[i]['group'] + "' target='_blank' style ='background: url(" + data[i]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 						\
 							<div class='view_link' title='' style ='background: url(" + data[i]['screen'] + ") no-repeat center/100% 100%;' ></div> \
@@ -85,6 +85,8 @@ $("#addLast").toggle(
 					$(element).text(indx + 1);	  
 				});
 
+				//-- SCROLL UP
+				$('html,body').animate({scrollTop:0}, 'slow');
 			}
 
 		}); //-- КОНЕЦ АЯКС-ЗАПРОСА
@@ -104,31 +106,33 @@ $("#addLast").toggle(
 	var allGroup = [0];
 	
 	$.ajax({
-
 		url: "ajax/add_del_group.php",
 		type: 'post',
 		dataType: 'json',
 		data: { vodca: "yes" },
 		success: function(data) {
 			
-			$("#link_add select,#header select,#header .menuCat").empty(); //-- предворительно очистим список
+			$("#link_add select,#header > select,#header .menuCat").empty(); //-- предворительно очистим список
 
-			for(var i = 0; i < data.length; i++) {
+			var zn_view = 1;
+
+			for(var i = 0; i < data["name"].length; i++) {
 					
-				allGroup[i] = data[i];
+				allGroup[i] = data["name"][i];
+
+				if( data["view"][i] == 1 ) { zn_view = ""; }
+				if( data["view"][i] == 0 ) { zn_view = "no-vis"; }
+
+				$("#link_add select,#header > select").append("<option>" + data["name"][i] + "</option>"); //-- заполняем список категориями
 				
-				$("#link_add select,#header select").append("<option>" + data[i] + "</option>"); //-- заполняем список категориями
-				
-				$("#header .menuCat").append("<li style='background: " + data[i] + "'><h3><a>" + data[i] + "</a></h3></li>"); //-- заполняем список категориями
+				$("#header .menuCat").append("<li class='"+zn_view+"'><h3><a title='"+data["name"][i]+"' >" + data["name"][i] + "</a></h3></li>"); //-- заполняем список категориями
 				
 			}
 
 			$("#header .menuCat li:first").addClass('sel');  //-- выделение первого элемента в группе категорий меню
 
-			heightZn(); //-- создание отступа от вкладок
-
+			heightZn();  //-- создание отступа от вкладок
 		}
-
 	});
 
 	
@@ -171,7 +175,7 @@ $("#all_group li, #header .menuCat li").live('click',function(){
 				if(data[i]['choise'] == 1) {data[i]['icon'] = data[i]['screen'];}
 				
 				$("#wrapper ul.bom").append(
-					"<li id_number = '" + data[i]['id'] + "' >\
+					"<li id_number = '" + data[i]['id'] + "' title = '" + data[i]['data'] + "' data-sec = '" + data[i]['timeCreat'] + "' >\
 						<div class='item' title='" + data[i]['title'] + "' style ='background: " + data[i]['background'] + "' ><a href='" + data[i]['links'] + "' rel='" + data[i]['group'] + "' target='_blank' style ='background: url(" + data[i]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 						\
 							<div class='view_link' title='' style ='background: url(" + data[i]['screen'] + ") no-repeat center/100% 100%;' ></div> \
@@ -362,7 +366,7 @@ function dat(data){
 				if(data[i]['choise'] == 1) {data[i]['icon'] = data[i]['screen'];}
 				
 				$("#wrapper ul.bom").append(
-				"<li id_number = '" + data[i]['id'] + "'>\
+				"<li id_number = '" + data[i]['id'] + "' title = '" + data[i]['data'] + "' data-sec = '" + data[i]['timeCreat'] + "'>\
 					<div class='item' title='" + data[i]['title'] + "' style ='background: " + data[i]['background'] + "' ><a href='" + data[i]['links'] + "' rel='" + data[i]['group'] + "' target='_blank' style ='background: url(" + data[i]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 					\
 						<div class='view_link' title='' style ='background: url(" + data[i]['screen'] + ") no-repeat center/100% 100%;' ></div> \

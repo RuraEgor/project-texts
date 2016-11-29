@@ -3,9 +3,7 @@
 <html lang="ru">
 <head>
 
-	<script src="ckeditor/ckeditor.js"></script>
-
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0" />
 	<meta charset="utf-8">
 	
 	<link href="css/reset.css" rel="stylesheet" type="text/css" />
@@ -53,31 +51,26 @@
 		<ul id = "sel_ch"></ul>
 	</div>
 
-	<input type="checkbox" class="glob_search js_glob_search" title="Организует глобальный поиск" />
+	<input type="checkbox" class="glob_search js_glob_search" checked="true" title="Организует глобальный поиск" />
 	
 
 	<button id="all_categories" title = "Вывести все категории">Все Категории</button>	
 	
-	<button id="but_group_form">Добавить группу</button>
-	<button id="but_form">Добавить ссылку</button>
-		
+	<button id="but_group_form">Доб. группу</button>
+	<button id="but_form">Доб. ссылку</button>
 	<button id="addLast">20</button>
-	<button id="mainLinks">Главные</button>
-	
 	<button id="delMnLks" >Удаление</button>
 	<button id="cancelDelMnLks" title="Отмена удаления отмеченных для удаления ссылок" >Отмена</button>
 	
 	<ul class='menuCat'>
 	</ul>
 	
-
 	<a href="https://www.yandex.ru" id="search_yandex" target="_blank" class="links_header"><span>Яндекс</span></a>
 	<a href="https://www.google.ru" id="search_google" target="_blank" class="links_header"><span>Гугл</span></a>
 	<a href="https://translate.google.ru" id="transl_google" target="_blank" class="links_header"><span>Переводчик</span></a>
+	<a href="https://www.youtube.com" id="youtube" target="_blank" class="links_header"><span>YOUTOBE</span></a>
 
 </div><!--  END  but_form  -->
-
-
 
 <!--  ФОРМА ДЛЯ ВЫВОДА ВСЕХ ГРУПП  -->
 <div id="all_group">
@@ -87,11 +80,6 @@
 	</ul>
 	<div class="clear"></div>
 </div>	
-
-
-
-
-
 
 <!-- ФОРМА ДЛЯ ЗАПИСИ ТЕКСТА -->
 	<div id="wr_form" class="sortable">
@@ -208,7 +196,7 @@
 				<input type="text" id="backg_group_img" value="#74AAF6" />			
 			</p>
 			
-				<h3>Описание</h3>
+			<h3>Описание</h3>
 			<textarea id="title_group" ></textarea>
 					
 			<input type="button" id="but_send_group" value="Отправить" accesskey = "w"/>
@@ -239,8 +227,13 @@
 				<input type="radio" name="group_backg" value="true" id="backg_group_2" />
 				<input type="text" id="backg_group_img" value="#74AAF6" />			
 			</p>
-			
-				<h3>Описание</h3>
+			<p>
+				<label class="check-view">
+					<input id="menu_view" value="" checked type="checkbox"> - убрать чтобы пункт меню не отображался
+				</label>
+			</p>
+
+			<h3>Описание</h3>
 			<textarea id="title_group" ></textarea>
 					
 			<input type="button" id="but_send_group" value="Отправить" accesskey = "w"/>
@@ -290,9 +283,7 @@
 				</label>
 			</p>
 			
-			
-
-				<h3>Описание</h3>
+			<h3>Описание</h3>
 			<textarea name="title" class="title" ></textarea>
 					
 			<input type="button" name="but_send" class="but_send" value="Отправить" accesskey = "w"/>

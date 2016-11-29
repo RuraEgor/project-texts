@@ -174,7 +174,7 @@ $(document).keyup(function(e){ 	if(e.which == 17) { flag_push = false; } } ).key
 									if(data[i]['choise'] == 1) {data[i]['icon'] = data[i]['screen'];}
 									
 									$("#wrapper ul.bom").append(
-										"<li id_number = '" + data[i]['id'] + "' >\
+										"<li id_number = '" + data[i]['id'] + "' title = '" + data[i]['data'] + "' data-sec = '" + data[i]['timeCreat'] + "'>\
 											<div class='item' title='" + data[i]['title'] + "' style ='background: " + data[i]['background'] + "' ><a href='" + data[i]['links'] + "' rel='" + data[i]['group'] + "' target='_blank' style ='background: url(" + data[i]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 											\
 												<div class='view_link' title='' style ='background: url(" + data[i]['screen'] + ") no-repeat center/100% 100%;' ></div> \

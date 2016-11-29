@@ -1,5 +1,5 @@
 $(document).ready(function(){
-alert(7778);
+
 //-- Работа с увеличением текста в текстовом окне
 $(".js_font_lit").click(function(){
 	$("#wr_form").removeClass("font_14");
@@ -111,14 +111,15 @@ $(".js_font_big").click(function(){
 	
 //--------
 
-	$('#sizeElem').hover(
-		function(){ $(this).animate({right: '-40px'},400);},
-		function(){ $(this).animate({right: '-70px'},400);}
-	);
+	// $('#sizeElem').hover(
+	// 	function(){ $(this).animate({right: '-40px'},400);},
+	// 	function(){ $(this).animate({right: '-70px'},400);}
+	// );
 
 
 	$('#sizeElem').click(function(){
-	
+
+/*	
 		$.ajax({
 
 			url: "ajax/ajax.php",
@@ -126,15 +127,24 @@ $(".js_font_big").click(function(){
 			dataType: 'json',
 			data: { vodca: 777 },
 			success: function(data) {
-			/*
-				for(var i = 0; i < data.length; i++) {
+			
+				// for(var i = 0; i < data.length; i++) {
 				
-				  $(".bom.sortable li:eq(" + i + ") .item > a").attr("style","background: url(" + data[i]['screen'] + ") no-repeat center/7% 2%;");
-				}*/
+				//   $(".bom.sortable li:eq(" + i + ") .item > a").attr("style","background: url(" + data[i]['screen'] + ") no-repeat center/7% 2%;");
+				// }
 			}
 		});	
 	
 		$(".bom.sortable li ").animate({width: '290px', height: '340px', margin: '35px 30px'},1500);
+		*/
+		if( $(this).hasClass("show-elem") ){
+			$("li.no-vis").hide(500, function(){ heightZn(); } );
+			$(this).removeClass("show-elem");
+		} else {
+			$("li.no-vis").show(500,  function(){ heightZn(); });
+			$(this).addClass("show-elem");
+		}
+
 	});	
 	
 //--------
@@ -296,18 +306,14 @@ $("#header select").change(function(){
 
 //------ ВЫВОДИТ ССЫЛКИ ПРИ ПЕРВОНАЧАЛЬНОЙ ЗАГРУЗКЕ СТРАНИЦЫ  -----		
 	$.ajax({
-
 		url: "ajax/ajax.php",
 		type: 'post',
 		dataType: 'json',
-		//data: { vodca: 777 },
 		data: { mainLinks: 777 },
 		success: function(data) {
-			
+
 			dat(data);		
-
 		}
-
 	});
 
 	
@@ -362,7 +368,7 @@ $('#link_add #but_send').click(function(){
 					if(lstCrLink[0]['choise'] == 1) {lstCrLink[0]['icon'] = lstCrLink[0]['screen'];}
 					
 					$("#wrapper ul.bom").append(
-					"<li id_number = '" + lstCrLink[0]['id'] + "'>\
+					"<li id_number = '" + lstCrLink[0]['id'] + "' title = '" + data[0]['data'] + "' data-sec = '" + data[0]['timeCreat'] + "'>\
 						<div class='item' title='" + lstCrLink[0]['title'] + "' style ='background: " + lstCrLink[0]['background'] + "' ><a href='" + lstCrLink[0]['links'] + "' rel='" + data[0]['group'] + "' target='_blank' style ='background: url(" + lstCrLink[0]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 						\
 							<div class='view_link' title='' style ='background: url(" + lstCrLink[0]['screen'] + ") no-repeat center/100% 100%;' ></div> \
@@ -613,7 +619,7 @@ function dat(data){
 				if(data[i]['choise'] == 1) {data[i]['icon'] = data[i]['screen'];}
 				
 				$("#wrapper ul.bom").append(
-				"<li id_number = '" + data[i]['id'] + "'>\
+				"<li id_number = '" + data[i]['id'] + "' title = '" + data[i]['data'] + "' data-sec = '" + data[i]['timeCreat'] + "'>\
 					<div class='item' title='" + data[i]['title'] + "' style ='background: " + data[i]['background'] + "' ><a href='" + data[i]['links'] + "' rel='" + data[i]['group'] + "' target='_blank' style ='background: url(" + data[i]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 					\
 						<div class='view_link' title='' style ='background: url(" + data[i]['screen'] + ") no-repeat center/100% 100%;' ></div> \
@@ -643,7 +649,7 @@ function datEnd(){
 				if(glbData[0]['choise'] == 1) {glbData[0]['icon'] = glbData[0]['screen'];}
 				
 				$("#wrapper ul.bom").append(
-				"<li id_number = '" + glbData[0]['id'] + "'>\
+				"<li id_number = '" + glbData[0]['id'] + "' title = '" + data[0]['data'] + "' data-sec = '" + data[0]['timeCreat'] + "'>\
 					<div class='item' title='" + glbData[0]['title'] + "' style ='background: " + glbData[0]['background'] + "' ><a href='" + glbData[0]['links'] + "' rel='" + data[0]['group'] + "' target='_blank' style ='background: url(" + glbData[0]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 					\
 						<div class='view_link' title='' style ='background: url(" + glbData[0]['screen'] + ") no-repeat center/100% 100%;' ></div> \
@@ -670,7 +676,7 @@ function datStr(data){
 				if(data[0]['choise'] == 1) {data[0]['icon'] = data[0]['screen'];}
 				
 				$("#lastTventy ul").prepend(
-				"<li id_number = '" + data[0]['id'] + "'>\
+				"<li id_number = '" + data[0]['id'] + "' title = '" + data[0]['data'] + "' data-sec = '" + data[0]['timeCreat'] + "'>\
 					<div class='item' title='" + data[0]['title'] + "' style ='background: " + data[0]['background'] + "' ><a href='" + data[0]['links'] + "' rel='" + data[0]['group'] + "' target='_blank' style ='background: url(" + data[0]['icon'] + ") no-repeat center/87% 82%;' ></a> <input type='checkbox' class='delMany'  title='Позваляет отметить ссылки для удаления' />\
 					\
 						<div class='view_link' title='' style ='background: url(" + data[0]['screen'] + ") no-repeat center/100% 100%;' ></div> \
